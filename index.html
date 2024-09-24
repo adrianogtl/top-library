@@ -8,6 +8,32 @@
     <title>Top Library</title>
   </head>
   <body>
-    
+    <button type="button" id="newBookBtn">New Book</button>
+    <dialog>
+      <form method="post" id="form">
+        <p>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required />
+        </p>
+        <p>
+          <label for="Author">Author</label>
+          <input type="text" name="Author" id="author" required />
+        </p>
+        <p>
+          <label for="Pages">Number of pages</label>
+          <input type="number" name="pages" id="pages" />
+        </p>
+        <p>
+          Status
+          <select name="Read" id="status">
+            <option value="Read">Read</option>
+            <option value="Unread" selected>Unread</option>
+          </select>
+        </p>
+        <button type="button" id="closeDialogBtn">Close</button>
+        <input type="submit" id="addBookBtn" value="Add" />
+      </form>
+    </dialog>
+    <div class="container"></div>
   </body>
 </html>
