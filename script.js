@@ -18,7 +18,7 @@ function displayLibrary() {
     <div class="book" id="${i}">
     <p>${book.title}</p>
     <p>${book.author}</p>
-    <p>${book.pages} pages</p>
+    <p>${book.pages} ${book.pages > 1 ? "pages" : "page"}</p>
     <p>Status: ${book.status}</p>
     </div>`;
   });
@@ -50,12 +50,12 @@ form.addEventListener("submit", (e) => {
 
   const title = sanitizeInput(document.querySelector("#title").value);
   const author = sanitizeInput(document.querySelector("#author").value);
-  const pages = document.querySelector("#pages").value;
+  const pages = document.querySelector("#pages").valueAsNumber;
   const status =
     document.querySelector("#status").value === "0" ? "Read" : "Unread";
 
   const onlyNumbers = /^\d+$/g;
-  if (!pages.match(onlyNumbers)) {
+  if (!String(pages).match(onlyNumbers) || pages === 0) {
     closeDialog();
     return;
   }
