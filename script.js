@@ -11,6 +11,11 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function removeBookFromLibrary(id) {
+  myLibrary.splice(id, 1);
+  displayLibrary();
+}
+
 function displayLibrary() {
   container.innerHTML = "";
   myLibrary.forEach((book, i) => {
@@ -20,6 +25,7 @@ function displayLibrary() {
     <p>${book.author}</p>
     <p>${book.pages} ${book.pages > 1 ? "pages" : "page"}</p>
     <p>Status: ${book.status}</p>
+    <button onclick="removeBookFromLibrary(${i})" class="removeBtn" title="Remove book from the library">Remove</button>
     </div>`;
   });
 }
