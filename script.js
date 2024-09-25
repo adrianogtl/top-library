@@ -16,6 +16,11 @@ function removeBookFromLibrary(id) {
   displayLibrary();
 }
 
+function toggleBookStatus(id) {
+  myLibrary[id].status = myLibrary[id].status === "Unread" ? "Read" : "Unread";
+  displayLibrary();
+}
+
 function displayLibrary() {
   container.innerHTML = "";
   myLibrary.forEach((book, i) => {
@@ -26,6 +31,7 @@ function displayLibrary() {
     <p>${book.pages} ${book.pages > 1 ? "pages" : "page"}</p>
     <p>Status: ${book.status}</p>
     <button onclick="removeBookFromLibrary(${i})" class="removeBtn" title="Remove book from the library">Remove</button>
+    <button onclick="toggleBookStatus(${i})" class="statusToggleBtn">Change status</button>
     </div>`;
   });
 }
