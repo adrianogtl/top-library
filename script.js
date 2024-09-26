@@ -26,12 +26,24 @@ function displayLibrary() {
   myLibrary.forEach((book, i) => {
     container.innerHTML += `
     <div class="book" id="${i}">
-    <p>${book.title}</p>
-    <p>${book.author}</p>
-    <p>${book.pages} ${book.pages > 1 ? "pages" : "page"}</p>
-    <p>Status: ${book.status}</p>
-    <button onclick="removeBookFromLibrary(${i})" class="removeBtn" title="Remove book from the library">Remove</button>
-    <button onclick="toggleBookStatus(${i})" class="statusToggleBtn">Change status</button>
+      <p>
+        <span class="fw-bold">Title:</span>
+        ${book.title}
+      </p>
+      <p>
+        <span class="fw-bold">Author:</span>
+        ${book.author}
+      </p>
+      <p>
+        <span class="fw-bold">Pages:</span>
+        ${book.pages} ${book.pages > 1 ? "pages" : "page"}
+      </p>
+      <p>
+        <span class="fw-bold">Status:</span>
+        ${book.status}
+      </p>
+      <button onclick="toggleBookStatus(${i})" class="statusToggleBtn">Change status</button>
+      <button onclick="removeBookFromLibrary(${i})" class="removeBtn" title="Remove book from the library">Remove</button>
     </div>`;
   });
 }
@@ -42,9 +54,9 @@ const dialog = document.querySelector("dialog");
 const closeDialogBtn = document.querySelector("#closeDialogBtn");
 const form = document.querySelector("#form");
 
-const openDialog = () => dialog.setAttribute("open", true);
+const openDialog = () => dialog.showModal();
 const closeDialog = () => {
-  dialog.removeAttribute("open");
+  dialog.close();
   form.reset();
 };
 

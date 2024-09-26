@@ -1,0 +1,204 @@
+:root {
+  --primaryColor: #d3d0cb;
+  --accentColor: #454851;
+  --shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  --shadow2: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+  --border-radius-btn: 8px;
+  --border-radius-layout: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+body,
+button,
+input {
+  background-color: var(--primaryColor);
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  padding: 1em;
+  align-items: center;
+  color: white;
+  background-color: var(--accentColor);
+  box-shadow: var(--shadow);
+}
+
+h1::before {
+  content: "";
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: url(img/logo.png);
+  background-size: contain;
+  vertical-align: middle;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+#newBookBtn {
+  width: 50px;
+  font-size: 1.8em;
+  font-weight: 700;
+  border-radius: var(--border-radius-btn);
+}
+
+dialog {
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  width: auto-fit;
+  padding: 1rem;
+  color: #fff;
+  background-color: var(--accentColor);
+  border: none;
+  border-radius: var(--border-radius-layout);
+  box-shadow: var(--shadow);
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(3px);
+}
+
+h2 {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+#closeDialogBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1em;
+  font-weight: 900;
+}
+
+.form-content {
+  display: grid;
+  grid-auto-columns: 1fr;
+}
+
+label,
+input,
+select {
+  font-size: 1em;
+}
+
+label {
+  vertical-align: middle;
+  margin-bottom: 0.5em;
+}
+
+input,
+select {
+  margin-bottom: 1em;
+}
+
+input[type="submit"],
+button {
+  cursor: pointer;
+  color: var(--accentColor);
+}
+
+input,
+button,
+select {
+  padding: 0.5rem;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+
+  &:focus {
+    outline: 2px solid var(--primaryColor);
+  }
+}
+
+#pages,
+#status {
+  width: 100%;
+}
+
+#addBookBtn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 0.5em 1em;
+}
+
+.container {
+  display: grid;
+  gap: 2rem;
+  grid-auto-columns: 1fr;
+
+  padding: 1em;
+  background-color: var(--primaryColor);
+}
+
+.book {
+  text-align: center;
+  background-color: #fff;
+  color: black;
+  padding: 1rem;
+  font-size: 1.3em;
+  border-radius: 6px;
+  box-shadow: var(--shadow2);
+}
+
+.book p {
+  margin-bottom: 0.5em;
+}
+
+.book button {
+  margin-top: 1em;
+  font-size: 1em;
+  color: #fff;
+  background-color: var(--accentColor);
+}
+
+@media (min-width: 768px) {
+  label,
+  input,
+  select {
+    font-size: 1.3em;
+  }
+
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2em;
+  }
+
+  .form-content {
+    grid-template-columns: 1fr 2.5fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3em;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    grid-template-columns: repeat(5, 1fr);
+    padding: 3em;
+  }
+}
