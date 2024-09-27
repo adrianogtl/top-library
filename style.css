@@ -77,6 +77,12 @@ dialog::backdrop {
   backdrop-filter: blur(3px);
 }
 
+.error {
+  color: #f00;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
 h2 {
   margin-bottom: 1em;
   text-align: center;

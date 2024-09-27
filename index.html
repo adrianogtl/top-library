@@ -32,6 +32,7 @@
             id="title"
             class="d-block"
             placeholder="Ex: Nineteen Eighty-four"
+            maxlength="20"
             required
           />
           <label for="author" class="d-block">Author:</label>
@@ -41,10 +42,18 @@
             id="author"
             class="d-block"
             placeholder="Ex: George Orwell "
+            maxlength="20"
             required
           />
           <label for="pages" class="d-block">Pages:</label>
-          <input type="number" name="pages" id="pages" placeholder="308" />
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="308"
+            min="1"
+            max="4"
+          />
           <label for="status" class="d-block">Status:</label>
           <select name="Read" id="status">
             <option value="0">Read</option>

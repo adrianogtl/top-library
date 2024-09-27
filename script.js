@@ -79,8 +79,16 @@ form.addEventListener("submit", (e) => {
     document.querySelector("#status").value === "0" ? "Read" : "Unread";
 
   const onlyNumbers = /^\d+$/g;
-  if (!String(pages).match(onlyNumbers) || pages === 0) {
-    closeDialog();
+  if (
+    !String(pages).match(onlyNumbers) ||
+    pages === 0 ||
+    title === "" ||
+    author === "" ||
+    title.length > 20 ||
+    author.length > 20 ||
+    String(pages).length > 4
+  ) {
+    alert("Invalid Input!");
     return;
   }
 
