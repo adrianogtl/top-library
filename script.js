@@ -19,7 +19,7 @@ function removeBookFromLibrary(id) {
 }
 
 function toggleBookStatus(id) {
-  myLibrary[id].status = myLibrary[id].status === "Unread" ? "Read" : "Unread";
+  myLibrary[id].status = !myLibrary[id].status;
   displayLibrary();
 }
 
@@ -42,7 +42,7 @@ function displayLibrary() {
       </p>
       <p>
         <span class="fw-bold">Status:</span>
-        ${book.status}
+        ${book.status ? "Read" : "Unread"}
       </p>
       <button onclick="toggleBookStatus(${i})" class="statusToggleBtn">Change status</button>
       <button onclick="removeBookFromLibrary(${i})" class="removeBtn" title="Remove book from the library">Remove</button>
@@ -77,8 +77,7 @@ form.addEventListener("submit", (e) => {
   const title = sanitizeInput(document.querySelector("#title").value);
   const author = sanitizeInput(document.querySelector("#author").value);
   const pages = document.querySelector("#pages").valueAsNumber;
-  const status =
-    document.querySelector("#status").value === "0" ? "Read" : "Unread";
+  const status = document.querySelector("#status").value === "0";
 
   const onlyNumbers = /^\d+$/g;
   if (
@@ -99,3 +98,23 @@ form.addEventListener("submit", (e) => {
   displayLibrary();
   closeDialog();
 });
+
+function generateDefaultBooks(quantity = 3) {
+  const generateRandomNum = (min = 0, max = 1) =>
+    Math.floor(Math.random() * (max - min + 1) + min);
+  const randomPages = () => generateRandomNum(30, 100);
+  const randomStatus = () => Boolean(generateRandomNum());
+
+  for (let i = 0; i < quantity; i++) {
+    const book = new Book(
+      `Book #${i + 1}`,
+      `Author ${i + 1}`,
+      randomPages(),
+      randomStatus()
+    );
+    addBookToLibrary(book);
+  }
+  displayLibrary();
+}
+
+generateDefaultBooks(10);
