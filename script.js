@@ -50,13 +50,27 @@ function displayLibrary() {
   });
 }
 
+function validateField(field) {
+  if (field.value.trim() === "") {
+    field.setCustomValidity("Field invalid!");
+    field.reportValidity();
+    return false;
+  }
+
+  return true;
+}
+
 const container = document.querySelector(".container");
 const newBookBtn = document.querySelector("#newBookBtn");
 const dialog = document.querySelector("dialog");
 const closeDialogBtn = document.querySelector("#closeDialogBtn");
 const form = document.querySelector("#form");
 
-const openDialog = () => dialog.showModal();
+const openDialog = () => {
+  dialog.showModal();
+  form.querySelector("#title").focus();
+};
+
 const closeDialog = () => {
   dialog.close();
   form.reset();
@@ -66,34 +80,34 @@ const sanitizeInput = (input) =>
   input
     .trim()
     .replace(/</g, "&lt;") // html tags
-    .replace(/>/g, "&gt;")
-    .replace(/\s{2,}/g, " "); // two or more spaces
+    .replace(/>/g, "&gt;");
 
 newBookBtn.addEventListener("click", openDialog);
 closeDialogBtn.addEventListener("click", closeDialog);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  let isValidForm = true;
+  const fields = form.querySelectorAll("input, select");
+  for (const field of fields) {
+    const isValidField = validateField(field);
+    if (!isValidField) {
+      isValidForm = false;
+      break;
+    }
+  }
 
-  const title = sanitizeInput(document.querySelector("#title").value);
-  const author = sanitizeInput(document.querySelector("#author").value);
-  const pages = document.querySelector("#pages").valueAsNumber;
-  const status = document.querySelector("#status").value === "0";
-
-  const onlyNumbers = /^\d+$/g;
-  if (
-    !String(pages).match(onlyNumbers) ||
-    pages === 0 ||
-    title === "" ||
-    author === "" ||
-    title.length > 20 ||
-    author.length > 20 ||
-    String(pages).length > 4
-  ) {
-    alert("Invalid Input!");
+  if (!isValidForm) {
     return;
   }
 
-  const book = new Book(title, author, pages, status);
+  const [title, author, pages, status] = Array.from(fields);
+
+  const book = new Book(
+    sanitizeInput(title.value),
+    sanitizeInput(author.value),
+    sanitizeInput(pages.value),
+    sanitizeInput(status.value) === "0" ? true : false
+  );
   addBookToLibrary(book);
   displayLibrary();
   closeDialog();

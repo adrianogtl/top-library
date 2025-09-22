@@ -22,7 +22,7 @@
       <button type="button" id="newBookBtn" title="Add a book">+</button>
     </header>
     <dialog>
-      <form method="post" id="form">
+      <form method="post" action="/" id="form" novalidate>
         <h2>New Book</h2>
         <button type="button" id="closeDialogBtn">X</button>
         <div class="form-content">
@@ -54,14 +54,16 @@
             placeholder="308"
             min="1"
             max="9999"
+            required
           />
           <label for="status" class="d-block">Status:</label>
-          <select name="Read" id="status">
+          <select name="Read" id="status" required>
+            <option value="" selected disabled>Select</option>
             <option value="0">Read</option>
-            <option value="1" selected>Unread</option>
+            <option value="1">Unread</option>
           </select>
         </div>
-        <input type="submit" id="addBookBtn" value="Add" />
+        <button type="submit" id="addBookBtn">Add</button>
       </form>
     </dialog>
     <div class="container"></div>
